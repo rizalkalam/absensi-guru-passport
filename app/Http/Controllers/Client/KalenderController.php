@@ -45,14 +45,31 @@ class KalenderController extends Controller
 
     public function notifEvent()
     {
+        // $event = array();
+        // $checkEvent = DB::table('kalenders')
+        //     ->whereDate('tanggal', Carbon::now())
+        //     ->exists();
+
+        // if ($checkEvent) {
+        //     $event = DB::table('kalenders')
+        //         ->whereDate('tanggal', Carbon::now())
+        //         ->get();
+        // }
+
+        // return response()->json([
+        //     'message' => 'event hari ini',
+        //     'data' => $event
+        // ]);
         $event = array();
         $checkEvent = DB::table('kalenders')
-            ->whereDate('tanggal', Carbon::now())
+            // ->whereDate('tanggal', Carbon::now())
+            ->whereDate('tanggal', '>=', today()->toDateString())
             ->exists();
-
+ 
         if ($checkEvent) {
             $event = DB::table('kalenders')
-                ->whereDate('tanggal', Carbon::now())
+                // ->whereDate('tanggal', Carbon::now())
+                ->whereDate('tanggal', '>=', today()->toDateString())
                 ->get();
         }
 
